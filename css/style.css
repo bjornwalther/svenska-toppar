@@ -93,6 +93,7 @@ header p {
   padding: 1.2rem;
   border-left: 4px solid var(--color-pending);
   transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
 }
 
 .peak-card:hover {
