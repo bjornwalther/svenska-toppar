@@ -31,6 +31,38 @@ const badgeData = [
   { id: "lappland", province: "Lappland", peak: "Kebnekaise", elev: 2097, img: fp("Lapplands vapen.svg"), color: "oklch(34% 0.12 240)", textFill: "oklch(68% 0.08 240)", quote: "Sveriges tak, 2097 m.\u00f6.h.", completed: false }
 ];
 
+// Single global drag state (only one badge dragged at a time)
+let activeCoin = null;
+let dragStartX = 0;
+let dragRotY = 0;
+let dragLastY = 0;
+
+function onGlobalMove(clientX) {
+  if (!activeCoin) return;
+  dragRotY = dragLastY + (clientX - dragStartX) * 0.7;
+  activeCoin.style.transform = `rotateY(${dragRotY}deg)`;
+}
+
+function onGlobalEnd() {
+  if (!activeCoin) return;
+  activeCoin.classList.add('animating');
+  const n = ((dragRotY % 360) + 360) % 360;
+  dragRotY = (n > 90 && n < 270) ? Math.round(dragRotY / 360) * 360 + 180 : Math.round(dragRotY / 360) * 360;
+  activeCoin.style.transform = `rotateY(${dragRotY}deg)`;
+  activeCoin = null;
+}
+
+// Use passive listeners on document so scrolling is never blocked
+document.addEventListener('mousemove', e => onGlobalMove(e.clientX));
+document.addEventListener('touchmove', e => {
+  if (activeCoin) {
+    e.preventDefault();
+    onGlobalMove(e.touches[0].clientX);
+  }
+}, { passive: false });
+document.addEventListener('mouseup', onGlobalEnd);
+document.addEventListener('touchend', onGlobalEnd);
+
 function renderBadges() {
   const grid = document.getElementById('grid');
 
@@ -77,40 +109,44 @@ function renderBadges() {
     `;
 
     grid.appendChild(item);
+  });
 
-    // Build thickness rings
-    requestAnimationFrame(() => {
-      const thickEl = document.getElementById(`thick-${idx}`);
-      if (thickEl) {
-        for (let i = 0; i <= 8; i++) {
-          const z = -4 + (8 * i / 8);
-          const ring = document.createElement('div');
-          const l = isLocked ? 18 : 46 + Math.sin((i / 8) * Math.PI) * 10;
-          const c = isLocked ? '0.002' : '0.11';
-          const h = isLocked ? '250' : '62';
-          ring.style.cssText = `position:absolute;inset:0;border-radius:50%;border:2px solid oklch(${l}% ${c} ${h});transform:translateZ(${z}px);backface-visibility:hidden;`;
-          thickEl.appendChild(ring);
-        }
+  // Build thickness rings and attach drag start handlers
+  badgeData.forEach((b, idx) => {
+    const isLocked = !b.completed;
+
+    // Thickness rings
+    const thickEl = document.getElementById(`thick-${idx}`);
+    if (thickEl) {
+      for (let i = 0; i <= 8; i++) {
+        const z = -4 + (8 * i / 8);
+        const ring = document.createElement('div');
+        const l = isLocked ? 18 : 46 + Math.sin((i / 8) * Math.PI) * 10;
+        const c = isLocked ? '0.002' : '0.11';
+        const h = isLocked ? '250' : '62';
+        ring.style.cssText = `position:absolute;inset:0;border-radius:50%;border:2px solid oklch(${l}% ${c} ${h});transform:translateZ(${z}px);backface-visibility:hidden;`;
+        thickEl.appendChild(ring);
       }
+    }
 
-      // Only add drag interaction to unlocked badges
-      if (!isLocked) {
-        const scene = document.getElementById(sceneId);
-        const coin = document.getElementById(coinId);
-        let dragging = false, sx = 0, rotY = 0, lastY = 0;
+    // Drag start (only on unlocked badges)
+    if (!isLocked) {
+      const scene = document.getElementById(`scene-${idx}`);
+      const coin = document.getElementById(`coin-${idx}`);
 
-        scene.addEventListener('mousedown', e => { dragging = true; coin.classList.remove('animating'); sx = e.clientX; lastY = rotY; e.preventDefault(); });
-        scene.addEventListener('touchstart', e => { dragging = true; coin.classList.remove('animating'); sx = e.touches[0].clientX; lastY = rotY; e.preventDefault(); }, { passive: false });
+      const startDrag = (clientX) => {
+        activeCoin = coin;
+        coin.classList.remove('animating');
+        dragStartX = clientX;
+        // Read current rotation from transform
+        const match = coin.style.transform && coin.style.transform.match(/rotateY\(([\d.-]+)deg\)/);
+        dragLastY = match ? parseFloat(match[1]) : 0;
+        dragRotY = dragLastY;
+      };
 
-        const move = (x) => { if (!dragging) return; rotY = lastY + (x - sx) * 0.7; coin.style.transform = `rotateY(${rotY}deg)`; };
-        document.addEventListener('mousemove', e => move(e.clientX));
-        document.addEventListener('touchmove', e => { move(e.touches[0].clientX); e.preventDefault(); }, { passive: false });
-
-        const end = () => { if (!dragging) return; dragging = false; coin.classList.add('animating'); const n = ((rotY % 360) + 360) % 360; rotY = (n > 90 && n < 270) ? Math.round(rotY/360)*360+180 : Math.round(rotY/360)*360; coin.style.transform = `rotateY(${rotY}deg)`; };
-        document.addEventListener('mouseup', end);
-        document.addEventListener('touchend', end);
-      }
-    });
+      scene.addEventListener('mousedown', e => { startDrag(e.clientX); e.preventDefault(); });
+      scene.addEventListener('touchstart', e => { startDrag(e.touches[0].clientX); }, { passive: true });
+    }
   });
 }
 
