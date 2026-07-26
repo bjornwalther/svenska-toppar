@@ -109,6 +109,13 @@ header p {
   margin-bottom: 0.3rem;
 }
 
+.peak-card .peak-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
 .peak-card .province {
   color: var(--color-muted);
   font-size: 0.85rem;
@@ -117,6 +124,43 @@ header p {
 .peak-card .elevation {
   font-weight: 700;
   color: var(--color-highlight);
+}
+
+.peak-card .coords-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.peak-card .coords {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.75rem;
+  color: var(--color-muted);
+}
+
+.peak-card .copy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--color-accent);
+  border-radius: 4px;
+  padding: 4px;
+  cursor: pointer;
+  color: var(--color-muted);
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.peak-card .copy-btn:hover {
+  color: var(--color-text);
+  border-color: var(--color-muted);
+  background: var(--color-accent);
+}
+
+.peak-card .copy-btn.copied {
+  color: var(--color-completed);
+  border-color: var(--color-completed);
 }
 
 .peak-card .status {
