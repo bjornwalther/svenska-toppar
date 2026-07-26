@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Svenska Toppar - Sveriges Landskapstoppar</title>
+  <meta name="description" content="Interaktiv karta och tracker för Sveriges 25 landskapstoppar. Följ vår resa att bestiga den högsta toppen i varje svenskt landskap.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Svenska Toppar</h1>
+    <p>På jakt efter den högsta punkten i varje svenskt landskap</p>
+  </header>
+
+  <div class="container">
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-number" id="stat-completed">0</div>
+        <div class="stat-label">Avklarade</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number" id="stat-total">25</div>
+        <div class="stat-label">Totalt</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number" id="stat-elevation">0 m</div>
+        <div class="stat-label">Total höjd</div>
+      </div>
+    </div>
+
+    <div id="map"></div>
+
+    <h2 style="margin: 2rem 0 1rem; font-size: 1.5rem;">Alla Landskapstoppar</h2>
+    <div id="peak-list" class="peak-list"></div>
+  </div>
+
+  <footer>
+    <p>Svenska Toppar &mdash; Björn & Frank &copy; 2024-2026</p>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
