@@ -62,29 +62,9 @@ document.addEventListener('touchmove', e => {
 document.addEventListener('mouseup', onGlobalEnd);
 document.addEventListener('touchend', onGlobalEnd);
 
-function renderProgress() {
-  const section = document.getElementById('progress');
-  const totalElev = badgeData.reduce((sum, b) => sum + b.elev, 0);
-  const doneElev = badgeData.filter(b => b.completed).reduce((sum, b) => sum + b.elev, 0);
-  const pct = Math.round((doneElev / totalElev) * 100);
-
-  section.innerHTML = `
-    <div class="progress-label">H\u00f6jdmeter</div>
-    <div class="progress-bar">
-      <div class="progress-fill" style="width: ${pct}%"></div>
-    </div>
-    <div class="progress-stats">
-      <span class="done">${doneElev} m avklarade</span>
-      <span>${pct}% av ${totalElev} m</span>
-    </div>
-  `;
-}
-
 function renderBadges() {
   const grid = document.getElementById('grid');
-
-  // Progress bar
-  renderProgress();
+  if (!grid) return;
 
   // Sort: completed first, then locked
   const sorted = [...badgeData].sort((a, b) => {
