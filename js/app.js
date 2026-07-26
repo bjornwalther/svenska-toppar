@@ -14,12 +14,12 @@ async function init() {
 }
 
 function renderStats() {
-  const completed = peaks.filter(p => p.completed).length;
-  const total = peaks.length;
-  const totalElevation = peaks.reduce((sum, p) => p.completed ? sum + p.elevation : sum, 0);
+  const mainPeaks = peaks.filter(p => !p.bonus);
+  const completed = mainPeaks.filter(p => p.completed).length;
+  const total = mainPeaks.length;
+  const totalElevation = peaks.filter(p => p.completed).reduce((sum, p) => sum + p.elevation, 0);
 
-  document.getElementById('stat-completed').textContent = completed;
-  document.getElementById('stat-total').textContent = total;
+  document.getElementById('stat-completed').textContent = `${completed} / ${total}`;
   document.getElementById('stat-elevation').textContent = `${totalElevation} m`;
 }
 
@@ -35,17 +35,18 @@ function initMap() {
     const color = peak.completed ? '#4ecca3' : '#e94560';
 
     const marker = L.circleMarker([peak.lat, peak.lng], {
-      radius: 8,
+      radius: peak.bonus ? 6 : 8,
       fillColor: color,
       color: '#fff',
       weight: 2,
       opacity: 1,
-      fillOpacity: 0.8
+      fillOpacity: peak.bonus ? 0.6 : 0.8
     }).addTo(map);
 
     const status = peak.completed ? `Avklarad ${peak.date}` : 'Ej bes\u00f6kt';
+    const bonusTag = peak.bonus ? ' (bonus)' : '';
     marker.bindPopup(`
-      <strong>${peak.province}</strong><br>
+      <strong>${peak.province}${bonusTag}</strong><br>
       ${peak.peak}<br>
       ${peak.elevation} m.\u00f6.h.<br>
       <em>${status}</em><br>
@@ -91,16 +92,18 @@ function focusPeak(peakId) {
 function renderPeakList() {
   const container = document.getElementById('peak-list');
 
-  // Sort: completed first, then by elevation descending
+  // Sort: completed first, then by elevation descending. Bonus peaks last within each group.
   const sorted = [...peaks].sort((a, b) => {
     if (a.completed && !b.completed) return -1;
     if (!a.completed && b.completed) return 1;
+    if (a.bonus && !b.bonus) return 1;
+    if (!a.bonus && b.bonus) return -1;
     return b.elevation - a.elevation;
   });
 
   container.innerHTML = sorted.map(peak => `
-    <div class="peak-card ${peak.completed ? 'completed' : ''}" onclick="focusPeak('${peak.id}')">
-      <h3>${peak.peak}</h3>
+    <div class="peak-card ${peak.completed ? 'completed' : ''} ${peak.bonus ? 'bonus' : ''}" onclick="focusPeak('${peak.id}')">
+      <h3>${peak.peak}${peak.bonus ? '<span class="badge">Bonus</span>' : ''}</h3>
       <div class="peak-meta">
         <span class="province">${peak.province}</span>
         <span class="elevation">${peak.elevation} m</span>
