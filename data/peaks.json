@@ -2,10 +2,10 @@
   {
     "id": "skane",
     "province": "Skåne",
-    "peak": "Söderasen (Kopparhatten)",
+    "peak": "Söderåsen (Magleröd)",
     "elevation": 212,
-    "lat": 56.0333,
-    "lng": 13.2833,
+    "lat": 56.0653,
+    "lng": 13.1389,
     "completed": false,
     "date": null,
     "notes": ""
@@ -14,9 +14,9 @@
     "id": "blekinge",
     "province": "Blekinge",
     "peak": "Rävabacken",
-    "elevation": 190,
-    "lat": 56.45,
-    "lng": 15.05,
+    "elevation": 189,
+    "lat": 56.4414,
+    "lng": 14.5264,
     "completed": false,
     "date": null,
     "notes": ""
@@ -26,8 +26,8 @@
     "province": "Småland",
     "peak": "Tomtabacken",
     "elevation": 377,
-    "lat": 57.5833,
-    "lng": 15.05,
+    "lat": 57.5003,
+    "lng": 14.4700,
     "completed": false,
     "date": null,
     "notes": ""
@@ -35,10 +35,10 @@
   {
     "id": "oland",
     "province": "Öland",
-    "peak": "Högsrum",
-    "elevation": 57,
-    "lat": 56.7833,
-    "lng": 16.6333,
+    "peak": "Höghäll",
+    "elevation": 55,
+    "lat": 56.7703,
+    "lng": 16.5958,
     "completed": false,
     "date": null,
     "notes": ""
@@ -47,9 +47,9 @@
     "id": "gotland",
     "province": "Gotland",
     "peak": "Lojsta hed",
-    "elevation": 83,
-    "lat": 57.4333,
-    "lng": 18.35,
+    "elevation": 82,
+    "lat": 57.3322,
+    "lng": 18.3372,
     "completed": false,
     "date": null,
     "notes": ""
@@ -57,10 +57,10 @@
   {
     "id": "halland",
     "province": "Halland",
-    "peak": "Galtåsen",
+    "peak": "Högalteknall",
     "elevation": 226,
-    "lat": 57.0167,
-    "lng": 12.95,
+    "lat": 56.3756,
+    "lng": 13.0403,
     "completed": false,
     "date": null,
     "notes": ""
@@ -68,10 +68,10 @@
   {
     "id": "vastergotland",
     "province": "Västergötland",
-    "peak": "Galtåsen (Falkenberg)",
-    "elevation": 362,
-    "lat": 58.0833,
-    "lng": 12.3333,
+    "peak": "Galtåsen",
+    "elevation": 361,
+    "lat": 57.7842,
+    "lng": 13.5506,
     "completed": false,
     "date": null,
     "notes": ""
@@ -79,10 +79,10 @@
   {
     "id": "ostergotland",
     "province": "Östergötland",
-    "peak": "Stenkällegårdsberget",
-    "elevation": 327,
-    "lat": 58.2167,
-    "lng": 15.1167,
+    "peak": "Stenabohöjden",
+    "elevation": 328,
+    "lat": 57.7683,
+    "lng": 15.2419,
     "completed": false,
     "date": null,
     "notes": ""
@@ -90,10 +90,10 @@
   {
     "id": "bohuslan",
     "province": "Bohuslän",
-    "peak": "Svartedalens högsta punkt",
+    "peak": "Björnerödspiggen",
     "elevation": 222,
-    "lat": 58.1333,
-    "lng": 11.9667,
+    "lat": 59.0125,
+    "lng": 11.4028,
     "completed": false,
     "date": null,
     "notes": ""
@@ -101,10 +101,10 @@
   {
     "id": "dalsland",
     "province": "Dalsland",
-    "peak": "Baljebäcken",
-    "elevation": 302,
-    "lat": 58.95,
-    "lng": 12.2333,
+    "peak": "Baljåsen",
+    "elevation": 301,
+    "lat": 59.0847,
+    "lng": 12.4719,
     "completed": false,
     "date": null,
     "notes": ""
@@ -112,10 +112,10 @@
   {
     "id": "narke",
     "province": "Närke",
-    "peak": "Storåsen",
-    "elevation": 306,
-    "lat": 59.05,
-    "lng": 14.9167,
+    "peak": "Tomasbodahöjden",
+    "elevation": 298,
+    "lat": 59.3842,
+    "lng": 14.9722,
     "completed": false,
     "date": null,
     "notes": ""
@@ -123,13 +123,13 @@
   {
     "id": "sodermanland",
     "province": "Södermanland",
-    "peak": "Skanklint",
-    "elevation": 124,
-    "lat": 59.1167,
-    "lng": 16.75,
+    "peak": "Vensbrinksberget (Skogsbyås)",
+    "elevation": 123,
+    "lat": 58.7906,
+    "lng": 16.3278,
     "completed": true,
     "date": "2024",
-    "notes": "First peak! Easy hike."
+    "notes": "First peak!"
   },
   {
     "id": "uppland",
@@ -147,8 +147,8 @@
     "province": "Värmland",
     "peak": "Granberget",
     "elevation": 701,
-    "lat": 60.7667,
-    "lng": 12.7833,
+    "lat": 60.8975,
+    "lng": 12.7419,
     "completed": false,
     "date": null,
     "notes": ""
@@ -156,10 +156,10 @@
   {
     "id": "vastmanland",
     "province": "Västmanland",
-    "peak": "Högklint",
-    "elevation": 413,
-    "lat": 59.9167,
-    "lng": 15.8667,
+    "peak": "Fjällberget",
+    "elevation": 466,
+    "lat": 60.0953,
+    "lng": 14.9161,
     "completed": false,
     "date": null,
     "notes": ""
@@ -167,10 +167,10 @@
   {
     "id": "dalarna",
     "province": "Dalarna",
-    "peak": "Städjan",
-    "elevation": 1131,
-    "lat": 61.8833,
-    "lng": 12.95,
+    "peak": "Storvätteshågna",
+    "elevation": 1204,
+    "lat": 62.1208,
+    "lng": 12.4514,
     "completed": false,
     "date": null,
     "notes": ""
@@ -178,10 +178,10 @@
   {
     "id": "gastrikland",
     "province": "Gästrikland",
-    "peak": "Storön",
-    "elevation": 360,
-    "lat": 60.8833,
-    "lng": 16.6167,
+    "peak": "Lustigknopp",
+    "elevation": 402,
+    "lat": 60.9922,
+    "lng": 16.1311,
     "completed": false,
     "date": null,
     "notes": ""
@@ -189,21 +189,21 @@
   {
     "id": "halsingland",
     "province": "Hälsingland",
-    "peak": "Garpkölen",
-    "elevation": 677,
-    "lat": 62.0,
-    "lng": 14.9833,
+    "peak": "Granåsen",
+    "elevation": 670,
+    "lat": 61.8967,
+    "lng": 14.8089,
     "completed": false,
     "date": null,
-    "notes": ""
+    "notes": "Tidigare kallad Garpkölen"
   },
   {
     "id": "medelpad",
     "province": "Medelpad",
-    "peak": "Borgfjäll",
-    "elevation": 756,
-    "lat": 62.6833,
-    "lng": 15.5833,
+    "peak": "Myckelmyrberget",
+    "elevation": 578,
+    "lat": 62.4672,
+    "lng": 15.0739,
     "completed": false,
     "date": null,
     "notes": ""
@@ -211,32 +211,32 @@
   {
     "id": "angermanland",
     "province": "Ångermanland",
-    "peak": "Gitseåfjället",
-    "elevation": 756,
-    "lat": 63.85,
-    "lng": 15.9833,
+    "peak": "Midsommarfjället",
+    "elevation": 743,
+    "lat": 64.4453,
+    "lng": 15.3403,
     "completed": false,
     "date": null,
-    "notes": ""
+    "notes": "Omtvistad: Tåsjöberget (635m) är alternativet beroende på gränsdragning"
   },
   {
     "id": "jamtland",
     "province": "Jämtland",
-    "peak": "Storlåtteren",
-    "elevation": 1767,
-    "lat": 63.1333,
-    "lng": 13.1333,
+    "peak": "Storsylen (Rr 155B)",
+    "elevation": 1743,
+    "lat": 63.0214,
+    "lng": 12.1994,
     "completed": false,
     "date": null,
-    "notes": ""
+    "notes": "Riksröse på norska gränsen. Själva toppen ligger i Norge."
   },
   {
     "id": "harjedalen",
     "province": "Härjedalen",
-    "peak": "Helagstoppen",
+    "peak": "Helagsfjället",
     "elevation": 1797,
-    "lat": 62.9167,
-    "lng": 12.5167,
+    "lat": 62.9219,
+    "lng": 12.4056,
     "completed": false,
     "date": null,
     "notes": ""
@@ -246,19 +246,19 @@
     "province": "Västerbotten",
     "peak": "Åmliden",
     "elevation": 550,
-    "lat": 64.7833,
-    "lng": 16.5167,
+    "lat": 65.0431,
+    "lng": 19.0072,
     "completed": false,
     "date": null,
-    "notes": ""
+    "notes": "Högsta punkten kan ligga precis över gränsen i Lappland"
   },
   {
     "id": "norrbotten",
     "province": "Norrbotten",
-    "peak": "Sulitelma/Alkåtjåhkkå",
-    "elevation": 1410,
-    "lat": 67.1333,
-    "lng": 16.0833,
+    "peak": "Vitberget",
+    "elevation": 594,
+    "lat": 65.9831,
+    "lng": 20.3192,
     "completed": false,
     "date": null,
     "notes": ""
@@ -266,10 +266,10 @@
   {
     "id": "lappland",
     "province": "Lappland",
-    "peak": "Kebnekaise (sydtoppen)",
+    "peak": "Kebnekaise (nordtoppen)",
     "elevation": 2097,
-    "lat": 67.9,
-    "lng": 18.55,
+    "lat": 67.9047,
+    "lng": 18.5283,
     "completed": false,
     "date": null,
     "notes": ""
