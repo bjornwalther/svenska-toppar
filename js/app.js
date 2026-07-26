@@ -42,13 +42,30 @@ function initMap() {
       fillOpacity: 0.8
     }).addTo(map);
 
-    const status = peak.completed ? `Completed ${peak.date}` : 'Not yet visited';
+    const status = peak.completed ? `Avklarad ${peak.date}` : 'Ej bes\u00f6kt';
     marker.bindPopup(`
       <strong>${peak.province}</strong><br>
       ${peak.peak}<br>
-      ${peak.elevation} m.o.h.<br>
-      <em>${status}</em>
+      ${peak.elevation} m.\u00f6.h.<br>
+      <em>${status}</em><br>
+      <code>${peak.lat}, ${peak.lng}</code>
     `);
+  });
+}
+
+function formatCoords(lat, lng) {
+  return `${lat}, ${lng}`;
+}
+
+function copyCoords(lat, lng, btn) {
+  const text = formatCoords(lat, lng);
+  navigator.clipboard.writeText(text).then(() => {
+    btn.classList.add('copied');
+    btn.title = 'Kopierat!';
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      btn.title = 'Kopiera koordinater';
+    }, 2000);
   });
 }
 
@@ -65,10 +82,21 @@ function renderPeakList() {
   container.innerHTML = sorted.map(peak => `
     <div class="peak-card ${peak.completed ? 'completed' : ''}">
       <h3>${peak.peak}</h3>
-      <span class="province">${peak.province}</span>
-      <span class="elevation">${peak.elevation} m</span>
+      <div class="peak-meta">
+        <span class="province">${peak.province}</span>
+        <span class="elevation">${peak.elevation} m</span>
+      </div>
+      <div class="coords-row">
+        <span class="coords">${peak.lat}, ${peak.lng}</span>
+        <button class="copy-btn" onclick="copyCoords(${peak.lat}, ${peak.lng}, this)" title="Kopiera koordinater">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+        </button>
+      </div>
       <div class="status ${peak.completed ? 'done' : 'pending'}">
-        ${peak.completed ? '\u2713 Completed' + (peak.date ? ` (${peak.date})` : '') : 'Pending'}
+        ${peak.completed ? '\u2713 Avklarad' + (peak.date ? ` (${peak.date})` : '') : 'Ej bes\u00f6kt'}
       </div>
     </div>
   `).join('');
