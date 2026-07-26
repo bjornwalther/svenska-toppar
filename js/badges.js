@@ -31,7 +31,7 @@ const badgeData = [
   { id: "lappland", province: "Lappland", peak: "Kebnekaise", elev: 2097, img: fp("Lapplands vapen.svg"), color: "oklch(34% 0.12 240)", textFill: "oklch(68% 0.08 240)", quote: "Sveriges tak, 2097 m.\u00f6.h.", completed: false }
 ];
 
-// Single global drag state (only one badge dragged at a time)
+// Single global drag state
 let activeCoin = null;
 let dragStartX = 0;
 let dragRotY = 0;
@@ -52,7 +52,6 @@ function onGlobalEnd() {
   activeCoin = null;
 }
 
-// Use passive listeners on document so scrolling is never blocked
 document.addEventListener('mousemove', e => onGlobalMove(e.clientX));
 document.addEventListener('touchmove', e => {
   if (activeCoin) {
@@ -66,7 +65,14 @@ document.addEventListener('touchend', onGlobalEnd);
 function renderBadges() {
   const grid = document.getElementById('grid');
 
-  badgeData.forEach((b, idx) => {
+  // Sort: completed first, then locked
+  const sorted = [...badgeData].sort((a, b) => {
+    if (a.completed && !b.completed) return -1;
+    if (!a.completed && b.completed) return 1;
+    return 0;
+  });
+
+  sorted.forEach((b, idx) => {
     const isLocked = !b.completed;
     const item = document.createElement('div');
     item.className = `badge-item ${b.completed ? 'completed' : 'locked'}`;
@@ -83,10 +89,10 @@ function renderBadges() {
             <div class="shadow-layer"></div>
             <div class="inner-ring"></div>
             <div class="arc-text">
-              <svg viewBox="0 0 170 170">
+              <svg viewBox="0 0 280 280">
                 <defs>
-                  <path id="top-${idx}" d="M 18,85 A 67,67 0 0,1 152,85" />
-                  <path id="bot-${idx}" d="M 28,104 A 58,58 0 0,0 142,104" />
+                  <path id="top-${idx}" d="M 28,140 A 112,112 0 0,1 252,140" />
+                  <path id="bot-${idx}" d="M 42,172 A 100,100 0 0,0 238,172" />
                 </defs>
                 <text fill="${b.textFill}"><textPath href="#top-${idx}" startOffset="50%" text-anchor="middle">${b.province.toUpperCase()}</textPath></text>
                 <text fill="${b.textFill}" class="peak-arc"><textPath href="#bot-${idx}" startOffset="50%" text-anchor="middle">${b.peak.toUpperCase()}</textPath></text>
@@ -94,7 +100,7 @@ function renderBadges() {
             </div>
             <img class="coa-img" src="${b.img}" alt="${b.province}">
             <span class="elev">${b.elev} m</span>
-            ${isLocked ? '<svg class="lock-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>' : ''}
+            ${isLocked ? '<svg class="lock-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>' : ''}
           </div>
           ${b.completed ? `
           <div class="badge-back" style="background: radial-gradient(circle at 50% 50%, ${b.color}, oklch(14% 0.06 12)); box-shadow: inset 0 0 0 3px oklch(52% 0.1 60), inset 0 0 0 5px oklch(22% 0.04 22);">
@@ -111,11 +117,10 @@ function renderBadges() {
     grid.appendChild(item);
   });
 
-  // Build thickness rings and attach drag start handlers
-  badgeData.forEach((b, idx) => {
+  // Build thickness rings and attach drag handlers
+  sorted.forEach((b, idx) => {
     const isLocked = !b.completed;
 
-    // Thickness rings
     const thickEl = document.getElementById(`thick-${idx}`);
     if (thickEl) {
       for (let i = 0; i <= 8; i++) {
@@ -129,7 +134,6 @@ function renderBadges() {
       }
     }
 
-    // Drag start (only on unlocked badges)
     if (!isLocked) {
       const scene = document.getElementById(`scene-${idx}`);
       const coin = document.getElementById(`coin-${idx}`);
@@ -138,7 +142,6 @@ function renderBadges() {
         activeCoin = coin;
         coin.classList.remove('animating');
         dragStartX = clientX;
-        // Read current rotation from transform
         const match = coin.style.transform && coin.style.transform.match(/rotateY\(([\d.-]+)deg\)/);
         dragLastY = match ? parseFloat(match[1]) : 0;
         dragRotY = dragLastY;
