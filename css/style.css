@@ -57,12 +57,18 @@ header p {
 
 .stat {
   text-align: center;
+  min-width: 0;
 }
 
 .stat-number {
   font-size: 2.5rem;
   font-weight: 800;
   color: var(--color-highlight);
+  white-space: nowrap;
+}
+
+.stat-number.green {
+  color: var(--color-completed);
 }
 
 .stat-label {
@@ -105,9 +111,27 @@ header p {
   border-left-color: var(--color-completed);
 }
 
+.peak-card.bonus {
+  border-left-style: dashed;
+}
+
 .peak-card h3 {
   font-size: 1rem;
   margin-bottom: 0.3rem;
+}
+
+.peak-card .badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--color-accent);
+  color: var(--color-muted);
+  padding: 2px 6px;
+  border-radius: 3px;
+  margin-left: 0.5rem;
+  vertical-align: middle;
 }
 
 .peak-card .peak-meta {
@@ -196,7 +220,7 @@ footer {
   }
 
   .stat-number {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   #map {
