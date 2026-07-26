@@ -1,0 +1,160 @@
+:root {
+  --color-bg: #1a1a2e;
+  --color-surface: #16213e;
+  --color-accent: #0f3460;
+  --color-highlight: #e94560;
+  --color-text: #f0f0f0;
+  --color-muted: #8892a4;
+  --color-completed: #4ecca3;
+  --color-pending: #e94560;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+header {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: var(--color-surface);
+  border-bottom: 3px solid var(--color-highlight);
+}
+
+header h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+header p {
+  color: var(--color-muted);
+  font-size: 1.1rem;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--color-highlight);
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+#map {
+  width: 100%;
+  height: 500px;
+  border-radius: 12px;
+  margin: 2rem 0;
+  border: 2px solid var(--color-accent);
+}
+
+.peak-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.peak-card {
+  background: var(--color-surface);
+  border-radius: 8px;
+  padding: 1.2rem;
+  border-left: 4px solid var(--color-pending);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.peak-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.peak-card.completed {
+  border-left-color: var(--color-completed);
+}
+
+.peak-card h3 {
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.peak-card .province {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}
+
+.peak-card .elevation {
+  font-weight: 700;
+  color: var(--color-highlight);
+}
+
+.peak-card .status {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.peak-card .status.done {
+  color: var(--color-completed);
+}
+
+.peak-card .status.pending {
+  color: var(--color-muted);
+}
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  .stats {
+    gap: 1.5rem;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+  }
+
+  #map {
+    height: 350px;
+  }
+}
