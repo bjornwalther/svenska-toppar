@@ -2,6 +2,7 @@
 
 let peaks = [];
 let map;
+let markers = {};
 
 async function init() {
   const response = await fetch('data/peaks.json');
@@ -50,6 +51,8 @@ function initMap() {
       <em>${status}</em><br>
       <code>${peak.lat}, ${peak.lng}</code>
     `);
+
+    markers[peak.id] = marker;
   });
 }
 
@@ -57,7 +60,8 @@ function formatCoords(lat, lng) {
   return `${lat}, ${lng}`;
 }
 
-function copyCoords(lat, lng, btn) {
+function copyCoords(lat, lng, btn, event) {
+  event.stopPropagation();
   const text = formatCoords(lat, lng);
   navigator.clipboard.writeText(text).then(() => {
     btn.classList.add('copied');
@@ -67,6 +71,21 @@ function copyCoords(lat, lng, btn) {
       btn.title = 'Kopiera koordinater';
     }, 2000);
   });
+}
+
+function focusPeak(peakId) {
+  const peak = peaks.find(p => p.id === peakId);
+  if (!peak) return;
+
+  const mapEl = document.getElementById('map');
+  mapEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+  setTimeout(() => {
+    map.flyTo([peak.lat, peak.lng], 11, { duration: 1.2 });
+    setTimeout(() => {
+      markers[peak.id].openPopup();
+    }, 1300);
+  }, 400);
 }
 
 function renderPeakList() {
@@ -80,7 +99,7 @@ function renderPeakList() {
   });
 
   container.innerHTML = sorted.map(peak => `
-    <div class="peak-card ${peak.completed ? 'completed' : ''}">
+    <div class="peak-card ${peak.completed ? 'completed' : ''}" onclick="focusPeak('${peak.id}')">
       <h3>${peak.peak}</h3>
       <div class="peak-meta">
         <span class="province">${peak.province}</span>
@@ -88,7 +107,7 @@ function renderPeakList() {
       </div>
       <div class="coords-row">
         <span class="coords">${peak.lat}, ${peak.lng}</span>
-        <button class="copy-btn" onclick="copyCoords(${peak.lat}, ${peak.lng}, this)" title="Kopiera koordinater">
+        <button class="copy-btn" onclick="copyCoords(${peak.lat}, ${peak.lng}, this, event)" title="Kopiera koordinater">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
             <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
