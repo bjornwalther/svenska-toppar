@@ -62,8 +62,29 @@ document.addEventListener('touchmove', e => {
 document.addEventListener('mouseup', onGlobalEnd);
 document.addEventListener('touchend', onGlobalEnd);
 
+function renderProgress() {
+  const section = document.getElementById('progress');
+  const totalElev = badgeData.reduce((sum, b) => sum + b.elev, 0);
+  const doneElev = badgeData.filter(b => b.completed).reduce((sum, b) => sum + b.elev, 0);
+  const pct = Math.round((doneElev / totalElev) * 100);
+
+  section.innerHTML = `
+    <div class="progress-label">H\u00f6jdmeter</div>
+    <div class="progress-bar">
+      <div class="progress-fill" style="width: ${pct}%"></div>
+    </div>
+    <div class="progress-stats">
+      <span class="done">${doneElev} m avklarade</span>
+      <span>${pct}% av ${totalElev} m</span>
+    </div>
+  `;
+}
+
 function renderBadges() {
   const grid = document.getElementById('grid');
+
+  // Progress bar
+  renderProgress();
 
   // Sort: completed first, then locked
   const sorted = [...badgeData].sort((a, b) => {
@@ -89,10 +110,10 @@ function renderBadges() {
             <div class="shadow-layer"></div>
             <div class="inner-ring"></div>
             <div class="arc-text">
-              <svg viewBox="0 0 280 280">
+              <svg viewBox="0 0 320 320">
                 <defs>
-                  <path id="top-${idx}" d="M 28,140 A 112,112 0 0,1 252,140" />
-                  <path id="bot-${idx}" d="M 42,172 A 100,100 0 0,0 238,172" />
+                  <path id="top-${idx}" d="M 30,160 A 130,130 0 0,1 290,160" />
+                  <path id="bot-${idx}" d="M 48,198 A 115,115 0 0,0 272,198" />
                 </defs>
                 <text fill="${b.textFill}"><textPath href="#top-${idx}" startOffset="50%" text-anchor="middle">${b.province.toUpperCase()}</textPath></text>
                 <text fill="${b.textFill}" class="peak-arc"><textPath href="#bot-${idx}" startOffset="50%" text-anchor="middle">${b.peak.toUpperCase()}</textPath></text>
@@ -100,7 +121,7 @@ function renderBadges() {
             </div>
             <img class="coa-img" src="${b.img}" alt="${b.province}">
             <span class="elev">${b.elev} m</span>
-            ${isLocked ? '<svg class="lock-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>' : ''}
+            ${isLocked ? '<svg class="lock-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>' : ''}
           </div>
           ${b.completed ? `
           <div class="badge-back" style="background: radial-gradient(circle at 50% 50%, ${b.color}, oklch(14% 0.06 12)); box-shadow: inset 0 0 0 3px oklch(52% 0.1 60), inset 0 0 0 5px oklch(22% 0.04 22);">
