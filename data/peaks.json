@@ -127,9 +127,9 @@
     "elevation": 123,
     "lat": 58.7906,
     "lng": 16.3278,
-    "completed": true,
-    "date": "2024",
-    "notes": "First peak!"
+    "completed": false,
+    "date": null,
+    "notes": ""
   },
   {
     "id": "uppland",
@@ -141,6 +141,17 @@
     "completed": true,
     "date": "2024",
     "notes": ""
+  },
+  {
+    "id": "stockholm",
+    "province": "Stockholms län",
+    "peak": "Tornberget",
+    "elevation": 143,
+    "lat": 59.1369,
+    "lng": 18.0161,
+    "completed": true,
+    "date": "2024",
+    "notes": "Länstopp (ej landskapstopp)"
   },
   {
     "id": "varmland",
