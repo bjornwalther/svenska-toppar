@@ -52,7 +52,7 @@ header p {
   justify-content: center;
   gap: 3rem;
   padding: 1.5rem;
-  margin: 2rem 0;
+  margin: 2rem 0 1rem;
 }
 
 .stat {
@@ -76,6 +76,48 @@ header p {
   color: var(--color-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+
+/* Progress bar */
+.progress-section {
+  margin: 0 0 2rem;
+}
+
+.progress-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 14px;
+  background: oklch(18% 0.01 250);
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--color-completed);
+  border-radius: 7px;
+  transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.progress-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--color-muted);
+}
+
+.progress-stats .done {
+  color: var(--color-completed);
+  font-weight: 600;
 }
 
 #map {
