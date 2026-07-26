@@ -88,7 +88,7 @@
     "notes": ""
   },
   {
-    "id": "bohuslän",
+    "id": "bohuslan",
     "province": "Bohuslän",
     "peak": "Svartedalens högsta punkt",
     "elevation": 222,
@@ -134,10 +134,10 @@
   {
     "id": "uppland",
     "province": "Uppland",
-    "peak": "Eklundshov",
+    "peak": "Upplandsberget",
     "elevation": 118,
-    "lat": 60.05,
-    "lng": 17.5333,
+    "lat": 59.9711,
+    "lng": 17.0881,
     "completed": true,
     "date": "2024",
     "notes": ""
