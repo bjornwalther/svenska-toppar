@@ -9,6 +9,7 @@ async function init() {
   peaks = await response.json();
 
   renderStats();
+  renderProgress();
   initMap();
   renderPeakList();
 }
@@ -21,6 +22,26 @@ function renderStats() {
 
   document.getElementById('stat-completed').textContent = `${completed} / ${total}`;
   document.getElementById('stat-elevation').textContent = `${totalElevation} m`;
+}
+
+function renderProgress() {
+  const section = document.getElementById('progress-bar');
+  if (!section) return;
+
+  const totalElev = peaks.reduce((sum, p) => sum + p.elevation, 0);
+  const doneElev = peaks.filter(p => p.completed).reduce((sum, p) => sum + p.elevation, 0);
+  const pct = Math.round((doneElev / totalElev) * 100);
+
+  section.innerHTML = `
+    <div class="progress-label">H\u00f6jdmeter</div>
+    <div class="progress-bar">
+      <div class="progress-fill" style="width: ${pct}%"></div>
+    </div>
+    <div class="progress-stats">
+      <span class="done">${doneElev} m avklarade</span>
+      <span>${pct}% av ${totalElev} m</span>
+    </div>
+  `;
 }
 
 function initMap() {
@@ -92,7 +113,6 @@ function focusPeak(peakId) {
 function renderPeakList() {
   const container = document.getElementById('peak-list');
 
-  // Sort: completed first, then by elevation descending. Bonus peaks last within each group.
   const sorted = [...peaks].sort((a, b) => {
     if (a.completed && !b.completed) return -1;
     if (!a.completed && b.completed) return 1;
@@ -124,5 +144,4 @@ function renderPeakList() {
   `).join('');
 }
 
-// Initialize on DOM ready
 document.addEventListener('DOMContentLoaded', init);
