@@ -3,32 +3,32 @@
 const fp = (name) => `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(name)}`;
 
 const badgeData = [
-  { id: "skane", province: "Sk\u00e5ne", peak: "S\u00f6der\u00e5sen", elev: 212, img: fp("Sk\u00e5nes vapen.svg"), color: "oklch(38% 0.18 55)", textFill: "oklch(72% 0.13 55)", quote: "Mobilmast och en skylt i skymningen", completed: false },
-  { id: "blekinge", province: "Blekinge", peak: "R\u00e4vabacken", elev: 189, img: fp("Blekinges vapen.svg"), color: "oklch(32% 0.13 240)", textFill: "oklch(68% 0.1 240)", quote: "D\u00e4r ett B17-plan kraschade 1944", completed: false },
-  { id: "smaland", province: "Sm\u00e5land", peak: "Tomtabacken", elev: 377, img: fp("Sm\u00e5lands vapen.svg"), color: "oklch(38% 0.17 22)", textFill: "oklch(72% 0.13 45)", quote: "G\u00f6talands tak med brandtorn fr\u00e5n 1942", completed: false },
-  { id: "oland", province: "\u00d6land", peak: "H\u00f6gh\u00e4ll", elev: 55, img: fp("\u00d6lands vapen.svg"), color: "oklch(35% 0.13 240)", textFill: "oklch(68% 0.09 240)", quote: "V\u00e4derkvarnar och ett gravf\u00e4lt", completed: false },
-  { id: "gotland", province: "Gotland", peak: "Lojsta hed", elev: 82, img: fp("Gotlands vapen.svg"), color: "oklch(36% 0.14 240)", textFill: "oklch(70% 0.09 240)", quote: "Russparken alldeles intill", completed: false },
-  { id: "halland", province: "Halland", peak: "H\u00f6galteknall", elev: 226, img: fp("Hallands vapen.svg"), color: "oklch(38% 0.17 22)", textFill: "oklch(72% 0.13 45)", quote: "Sju hurtiga flickor 1906", completed: false },
-  { id: "vastergotland", province: "V\u00e4sterg\u00f6tland", peak: "Galt\u00e5sen", elev: 361, img: fp("V\u00e4sterg\u00f6tlands vapen.svg"), color: "oklch(35% 0.14 130)", textFill: "oklch(68% 0.1 130)", quote: "Pl\u00e5tflagga av Karl-Erik Eckerlind", completed: false },
-  { id: "ostergotland", province: "\u00d6sterg\u00f6tland", peak: "Stenaboh\u00f6jden", elev: 328, img: fp("\u00d6sterg\u00f6tlands vapen.svg"), color: "oklch(35% 0.14 240)", textFill: "oklch(70% 0.09 240)", quote: "Anspr\u00e5ksl\u00f6s topp n\u00e4ra Rydsn\u00e4s", completed: false },
-  { id: "bohuslan", province: "Bohusl\u00e4n", peak: "Bj\u00f6rner\u00f6dspiggen", elev: 222, img: fp("Bohusl\u00e4ns vapen.svg"), color: "oklch(40% 0.06 75)", textFill: "oklch(72% 0.08 60)", quote: "Gravr\u00f6se, vindskydd och utsikt mot Norge", completed: false },
-  { id: "dalsland", province: "Dalsland", peak: "Balj\u00e5sen", elev: 301, img: fp("Dalslands vapen.svg"), color: "oklch(35% 0.14 240)", textFill: "oklch(70% 0.09 240)", quote: "Raststuga med kamin p\u00e5 toppen", completed: false },
-  { id: "narke", province: "N\u00e4rke", peak: "Tomasbodah\u00f6jden", elev: 298, img: fp("N\u00e4rkes vapen.svg"), color: "oklch(38% 0.17 22)", textFill: "oklch(72% 0.13 45)", quote: "Tornsvalor bevakade luften", completed: false },
-  { id: "sodermanland", province: "S\u00f6dermanland", peak: "Vensbrinksberget", elev: 123, img: fp("S\u00f6dermanlands vapen.svg"), color: "oklch(38% 0.15 50)", textFill: "oklch(72% 0.12 50)", quote: "Pannkakor vid S\u00f6rmlandsleden", completed: false },
-  { id: "uppland", province: "Uppland", peak: "Upplandsberget", elev: 118, img: fp("Upplands vapen.svg"), color: "oklch(40% 0.19 20)", textFill: "oklch(76% 0.14 64)", quote: "Invigt 1999, trots att ingen vet att det finns", completed: true, date: "jul 2026" },
-  { id: "stockholm", province: "Stockholms l\u00e4n", peak: "Tornberget", elev: 143, img: fp("Stockholms l\u00e4ns vapen.svg"), color: "oklch(35% 0.14 240)", textFill: "oklch(70% 0.1 240)", quote: "L\u00e4nets tak, inte landskapets", completed: true, date: "okt 2025", bonus: true },
-  { id: "varmland", province: "V\u00e4rmland", peak: "Granberget", elev: 701, img: fp("V\u00e4rmlands vapen.svg"), color: "oklch(35% 0.14 240)", textFill: "oklch(70% 0.09 240)", quote: "701 meter n\u00e4ra norska gr\u00e4nsen", completed: false },
-  { id: "vastmanland", province: "V\u00e4stmanland", peak: "Fj\u00e4llberget", elev: 466, img: fp("V\u00e4stmanlands vapen.svg"), color: "oklch(38% 0.17 22)", textFill: "oklch(72% 0.13 45)", quote: "Bergslagen n\u00e4r det \u00e4r som b\u00e4st", completed: false },
-  { id: "dalarna", province: "Dalarna", peak: "Storv\u00e4ttesh\u00e5gna", elev: 1204, img: fp("Dalarnas vapen.svg"), color: "oklch(34% 0.13 240)", textFill: "oklch(68% 0.09 240)", quote: "Svealands tak, gr\u00e4nsen till H\u00e4rjedalen", completed: false },
-  { id: "gastrikland", province: "G\u00e4strikland", peak: "Lustigknopp", elev: 402, img: fp("G\u00e4striklands vapen.svg"), color: "oklch(38% 0.15 50)", textFill: "oklch(72% 0.12 50)", quote: "En romantisk kaffekanna p\u00e5 stubben", completed: false },
-  { id: "halsingland", province: "H\u00e4lsingland", peak: "Gran\u00e5sen", elev: 670, img: fp("H\u00e4lsinglands vapen.svg"), color: "oklch(38% 0.17 22)", textFill: "oklch(72% 0.13 45)", quote: "Tre landskap m\u00f6ts, ingen stig till toppen", completed: false },
-  { id: "medelpad", province: "Medelpad", peak: "Myckelmyrberget", elev: 578, img: fp("Medelpads vapen.svg"), color: "oklch(34% 0.12 240)", textFill: "oklch(68% 0.08 240)", quote: "Brandtornets skelett och 220m vindkraft", completed: false },
-  { id: "angermanland", province: "\u00c5ngermanland", peak: "Midsommarfj\u00e4llet", elev: 743, img: fp("\u00c5ngermanlands vapen.svg"), color: "oklch(38% 0.17 22)", textFill: "oklch(72% 0.13 45)", quote: "Omtvistad, beror p\u00e5 var gr\u00e4nsen dras", completed: false },
-  { id: "jamtland", province: "J\u00e4mtland", peak: "Storsylen", elev: 1743, img: fp("J\u00e4mtlands vapen.svg"), color: "oklch(34% 0.13 240)", textFill: "oklch(68% 0.09 240)", quote: "Riksr\u00f6se 155B, toppen \u00e4r i Norge", completed: false },
-  { id: "harjedalen", province: "H\u00e4rjedalen", peak: "Helagsfj\u00e4llet", elev: 1797, img: fp("H\u00e4rjedalens vapen.svg"), color: "oklch(34% 0.13 240)", textFill: "oklch(68% 0.09 240)", quote: "Sydligaste glaci\u00e4ren", completed: false },
-  { id: "vasterbotten", province: "V\u00e4sterbotten", peak: "\u00c5mliden", elev: 550, img: fp("V\u00e4sterbottens vapen.svg"), color: "oklch(38% 0.14 50)", textFill: "oklch(72% 0.11 50)", quote: "Vindkraftpark och ett staket mot Lappland", completed: false },
-  { id: "norrbotten", province: "Norrbotten", peak: "Vitberget", elev: 594, img: fp("Norrbottens vapen.svg"), color: "oklch(35% 0.14 130)", textFill: "oklch(68% 0.1 130)", quote: "V\u00e4rldens l\u00e4ngsta lav h\u00e4nger i granarna", completed: false },
-  { id: "lappland", province: "Lappland", peak: "Kebnekaise", elev: 2097, img: fp("Lapplands vapen.svg"), color: "oklch(34% 0.12 240)", textFill: "oklch(68% 0.08 240)", quote: "Sveriges tak, 2097 m.\u00f6.h.", completed: false }
+  { id: "skane", province: "Sk\u00e5ne", peak: "S\u00f6der\u00e5sen", elev: 212, img: fp("Sk\u00e5nes vapen.svg"), color: "oklch(38% 0.18 55)", textFill: "oklch(72% 0.13 55)", quote: "", completed: false },
+  { id: "blekinge", province: "Blekinge", peak: "R\u00e4vabacken", elev: 189, img: fp("Blekinges vapen.svg"), color: "oklch(32% 0.13 240)", textFill: "oklch(68% 0.1 240)", quote: "", completed: false },
+  { id: "smaland", province: "Sm\u00e5land", peak: "Tomtabacken", elev: 377, img: fp("Sm\u00e5lands vapen.svg"), color: "oklch(38% 0.17 22)", textFill: "oklch(72% 0.13 45)", quote: "", completed: false },
+  { id: "oland", province: "\u00d6land", peak: "H\u00f6gh\u00e4ll", elev: 55, img: fp("\u00d6lands vapen.svg"), color: "oklch(35% 0.13 240)", textFill: "oklch(68% 0.09 240)", quote: "", completed: false },
+  { id: "gotland", province: "Gotland", peak: "Lojsta hed", elev: 82, img: fp("Gotlands vapen.svg"), color: "oklch(36% 0.14 240)", textFill: "oklch(70% 0.09 240)", quote: "", completed: false },
+  { id: "halland", province: "Halland", peak: "H\u00f6galteknall", elev: 226, img: fp("Hallands vapen.svg"), color: "oklch(38% 0.17 22)", textFill: "oklch(72% 0.13 45)", quote: "", completed: false },
+  { id: "vastergotland", province: "V\u00e4sterg\u00f6tland", peak: "Galt\u00e5sen", elev: 361, img: fp("V\u00e4sterg\u00f6tlands vapen.svg"), color: "oklch(35% 0.14 130)", textFill: "oklch(68% 0.1 130)", quote: "", completed: false },
+  { id: "ostergotland", province: "\u00d6sterg\u00f6tland", peak: "Stenaboh\u00f6jden", elev: 328, img: fp("\u00d6sterg\u00f6tlands vapen.svg"), color: "oklch(35% 0.14 240)", textFill: "oklch(70% 0.09 240)", quote: "", completed: false },
+  { id: "bohuslan", province: "Bohusl\u00e4n", peak: "Bj\u00f6rner\u00f6dspiggen", elev: 222, img: fp("Bohusl\u00e4ns vapen.svg"), color: "oklch(40% 0.06 75)", textFill: "oklch(72% 0.08 60)", quote: "", completed: false },
+  { id: "dalsland", province: "Dalsland", peak: "Balj\u00e5sen", elev: 301, img: fp("Dalslands vapen.svg"), color: "oklch(35% 0.14 240)", textFill: "oklch(70% 0.09 240)", quote: "", completed: false },
+  { id: "narke", province: "N\u00e4rke", peak: "Tomasbodah\u00f6jden", elev: 298, img: fp("N\u00e4rkes vapen.svg"), color: "oklch(38% 0.17 22)", textFill: "oklch(72% 0.13 45)", quote: "", completed: false },
+  { id: "sodermanland", province: "S\u00f6dermanland", peak: "Vensbrinksberget", elev: 123, img: fp("S\u00f6dermanlands vapen.svg"), color: "oklch(38% 0.15 50)", textFill: "oklch(72% 0.12 50)", quote: "", completed: false },
+  { id: "uppland", province: "Uppland", peak: "Upplandsberget", elev: 118, img: fp("Upplands vapen.svg"), color: "oklch(40% 0.19 20)", textFill: "oklch(76% 0.14 64)", quote: "B\u00e4sta bl\u00e5b\u00e4rspajen", completed: true, date: "jul 2026" },
+  { id: "stockholm", province: "Stockholms l\u00e4n", peak: "Tornberget", elev: 143, img: fp("Stockholms l\u00e4ns vapen.svg"), color: "oklch(35% 0.14 240)", textFill: "oklch(70% 0.1 240)", quote: "Korpen flyger", completed: true, date: "okt 2025", bonus: true },
+  { id: "varmland", province: "V\u00e4rmland", peak: "Granberget", elev: 701, img: fp("V\u00e4rmlands vapen.svg"), color: "oklch(35% 0.14 240)", textFill: "oklch(70% 0.09 240)", quote: "", completed: false },
+  { id: "vastmanland", province: "V\u00e4stmanland", peak: "Fj\u00e4llberget", elev: 466, img: fp("V\u00e4stmanlands vapen.svg"), color: "oklch(38% 0.17 22)", textFill: "oklch(72% 0.13 45)", quote: "", completed: false },
+  { id: "dalarna", province: "Dalarna", peak: "Storv\u00e4ttesh\u00e5gna", elev: 1204, img: fp("Dalarnas vapen.svg"), color: "oklch(34% 0.13 240)", textFill: "oklch(68% 0.09 240)", quote: "", completed: false },
+  { id: "gastrikland", province: "G\u00e4strikland", peak: "Lustigknopp", elev: 402, img: fp("G\u00e4striklands vapen.svg"), color: "oklch(38% 0.15 50)", textFill: "oklch(72% 0.12 50)", quote: "", completed: false },
+  { id: "halsingland", province: "H\u00e4lsingland", peak: "Gran\u00e5sen", elev: 670, img: fp("H\u00e4lsinglands vapen.svg"), color: "oklch(38% 0.17 22)", textFill: "oklch(72% 0.13 45)", quote: "", completed: false },
+  { id: "medelpad", province: "Medelpad", peak: "Myckelmyrberget", elev: 578, img: fp("Medelpads vapen.svg"), color: "oklch(34% 0.12 240)", textFill: "oklch(68% 0.08 240)", quote: "", completed: false },
+  { id: "angermanland", province: "\u00c5ngermanland", peak: "Midsommarfj\u00e4llet", elev: 743, img: fp("\u00c5ngermanlands vapen.svg"), color: "oklch(38% 0.17 22)", textFill: "oklch(72% 0.13 45)", quote: "", completed: false },
+  { id: "jamtland", province: "J\u00e4mtland", peak: "Storsylen", elev: 1743, img: fp("J\u00e4mtlands vapen.svg"), color: "oklch(34% 0.13 240)", textFill: "oklch(68% 0.09 240)", quote: "", completed: false },
+  { id: "harjedalen", province: "H\u00e4rjedalen", peak: "Helagsfj\u00e4llet", elev: 1797, img: fp("H\u00e4rjedalens vapen.svg"), color: "oklch(34% 0.13 240)", textFill: "oklch(68% 0.09 240)", quote: "", completed: false },
+  { id: "vasterbotten", province: "V\u00e4sterbotten", peak: "\u00c5mliden", elev: 550, img: fp("V\u00e4sterbottens vapen.svg"), color: "oklch(38% 0.14 50)", textFill: "oklch(72% 0.11 50)", quote: "", completed: false },
+  { id: "norrbotten", province: "Norrbotten", peak: "Vitberget", elev: 594, img: fp("Norrbottens vapen.svg"), color: "oklch(35% 0.14 130)", textFill: "oklch(68% 0.1 130)", quote: "", completed: false },
+  { id: "lappland", province: "Lappland", peak: "Kebnekaise", elev: 2097, img: fp("Lapplands vapen.svg"), color: "oklch(34% 0.12 240)", textFill: "oklch(68% 0.08 240)", quote: "", completed: false }
 ];
 
 // Single global drag state
@@ -106,7 +106,7 @@ function renderBadges() {
           <div class="badge-back" style="background: radial-gradient(circle at 50% 50%, ${b.color}, oklch(14% 0.06 12)); box-shadow: inset 0 0 0 3px oklch(52% 0.1 60), inset 0 0 0 5px oklch(22% 0.04 22);">
             <span class="back-name">Frank</span>
             <span class="back-date">${b.date || ''}</span>
-            <span class="back-quote">"${b.quote}"</span>
+            ${b.quote ? `<span class="back-quote">"${b.quote}"</span>` : ''}
           </div>` : ''}
         </div>
       </div>
